@@ -12,6 +12,7 @@ class CreditCardForm extends StatefulWidget {
     this.expiryDate,
     this.cardHolderName,
     this.cvvCode,
+    this.phoneNumber,
     @required this.onCreditCardModelChange,
     this.themeColor,
     this.textColor = Colors.black,
@@ -24,6 +25,7 @@ class CreditCardForm extends StatefulWidget {
   final String expiryDate;
   final String cardHolderName;
   final String cvvCode;
+  final String phoneNumber;
   final void Function(CreditCardModel) onCreditCardModelChange;
   final Color themeColor;
   final Color textColor;
@@ -39,6 +41,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   String expiryDate;
   String cardHolderName;
   String cvvCode;
+  String phoneNumber;
   bool isCvvFocused = false;
   Color themeColor;
 
@@ -53,6 +56,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
       TextEditingController();
   final TextEditingController _cvvCodeController =
       MaskedTextController(mask: '0000');
+  final TextEditingController _phoneNumberController = TextEditingController();
 
   FocusNode cvvFocusNode = FocusNode();
 
@@ -66,9 +70,10 @@ class _CreditCardFormState extends State<CreditCardForm> {
     expiryDate = widget.expiryDate ?? '';
     cardHolderName = widget.cardHolderName ?? '';
     cvvCode = widget.cvvCode ?? '';
+    phoneNumber = widget.phoneNumber ?? '';
 
-    creditCardModel = CreditCardModel(
-        cardNumber, expiryDate, cardHolderName, cvvCode, isCvvFocused);
+    creditCardModel = CreditCardModel(cardNumber, expiryDate, cardHolderName,
+        cvvCode, isCvvFocused, phoneNumber);
   }
 
   @override
@@ -109,6 +114,14 @@ class _CreditCardFormState extends State<CreditCardForm> {
       setState(() {
         cvvCode = _cvvCodeController.text;
         creditCardModel.cvvCode = cvvCode;
+        onCreditCardModelChange(creditCardModel);
+      });
+    });
+
+    _phoneNumberController.addListener(() {
+      setState(() {
+        phoneNumber = _phoneNumberController.text;
+        creditCardModel.phoneNumber = phoneNumber;
         onCreditCardModelChange(creditCardModel);
       });
     });
@@ -203,6 +216,24 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   border: const OutlineInputBorder(),
                   labelText: widget.localizedText.cardHolderLabel,
                   hintText: widget.localizedText.cardHolderHint,
+                ),
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.next,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              margin: const EdgeInsets.only(left: 16, top: 8, right: 16),
+              child: TextFormField(
+                controller: _phoneNumberController,
+                cursorColor: widget.cursorColor ?? themeColor,
+                style: TextStyle(
+                  color: widget.textColor,
+                ),
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  labelText: widget.localizedText.phoneNumberLabel,
+                  hintText: widget.localizedText.phoneNumberHint,
                 ),
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
