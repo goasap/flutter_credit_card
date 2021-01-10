@@ -266,6 +266,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 margin: const EdgeInsets.only(left: 16, top: 8, right: 16),
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   controller: _amountController,
                   cursorColor: widget.cursorColor ?? themeColor,
                   style: TextStyle(
@@ -275,7 +276,6 @@ class _CreditCardFormState extends State<CreditCardForm> {
                       border: const OutlineInputBorder(),
                       labelText: widget.localizedText.amountLabel,
                       hintText: widget.localizedText.amountHint),
-                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                 ))
           ],
