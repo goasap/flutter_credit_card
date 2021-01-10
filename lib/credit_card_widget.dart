@@ -148,14 +148,15 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
     BuildContext context,
     Orientation orientation,
   ) {
-    final TextStyle defaultTextStyle = Theme.of(context).textTheme.title.merge(
-          TextStyle(
-            color: Colors.black,
-            fontFamily: 'halter',
-            fontSize: 16,
-            package: 'flutter_credit_card',
-          ),
-        );
+    final TextStyle defaultTextStyle =
+        Theme.of(context).textTheme.headline1.merge(
+              const TextStyle(
+                color: Colors.black,
+                fontFamily: 'halter',
+                fontSize: 16,
+                package: 'flutter_credit_card',
+              ),
+            );
 
     return Container(
       decoration: BoxDecoration(
@@ -244,14 +245,15 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
     BuildContext context,
     Orientation orientation,
   ) {
-    final TextStyle defaultTextStyle = Theme.of(context).textTheme.title.merge(
-          TextStyle(
-            color: Colors.white,
-            fontFamily: 'halter',
-            fontSize: 16,
-            package: 'flutter_credit_card',
-          ),
-        );
+    final TextStyle defaultTextStyle =
+        Theme.of(context).textTheme.headline1.merge(
+              const TextStyle(
+                color: Colors.white,
+                fontFamily: 'halter',
+                fontSize: 16,
+                package: 'flutter_credit_card',
+              ),
+            );
 
     return Container(
       margin: const EdgeInsets.all(16),
@@ -484,16 +486,18 @@ class AnimationCard extends StatelessWidget {
   }
 }
 
-class MaskedTextController extends TextEditingController {
-  MaskedTextController({String text, this.mask, Map<String, RegExp> translator})
+class MaskedTextControllerText extends TextEditingController {
+  MaskedTextControllerText(
+      {String text, this.mask, Map<String, RegExp> translator})
       : super(text: text) {
-    this.translator = translator ?? MaskedTextController.getDefaultTranslator();
+    this.translator =
+        translator ?? MaskedTextControllerText.getDefaultTranslator();
 
     addListener(() {
       final String previous = _lastUpdatedText;
-      if (this.beforeChange(previous, this.text)) {
+      if (beforeChange(previous, this.text)) {
         updateText(this.text);
-        this.afterChange(previous, this.text);
+        afterChange(previous, this.text);
       } else {
         updateText(_lastUpdatedText);
       }

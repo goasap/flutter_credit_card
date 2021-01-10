@@ -9,7 +9,9 @@ class LocalizedText {
       this.cardHolderLabel = _cardHolderLabelDefault,
       this.cardHolderHint = _cardHolderHintDefault,
       this.phoneNumberLabel = _phoneNumberLabelDefault,
-      this.phoneNumberHint = _phoneNumberHintDefault});
+      this.phoneNumberHint = _phoneNumberHintDefault,
+      this.amountLabel = _amountLabelDefault,
+      this.amountHint = _amountHintDefault});
 
   static const String _cardNumberLabelDefault = 'Card number';
   static const String _cardNumberHintDefault = 'xxxx xxxx xxxx xxxx';
@@ -21,6 +23,8 @@ class LocalizedText {
   static const String _cardHolderHintDefault = '';
   static const String _phoneNumberLabelDefault = 'Phone number';
   static const String _phoneNumberHintDefault = '';
+  static const String _amountLabelDefault = 'Amount';
+  static const String _amountHintDefault = '';
 
   final String cardNumberLabel;
   final String cardNumberHint;
@@ -32,4 +36,6 @@ class LocalizedText {
   final String cardHolderHint;
   final String phoneNumberLabel;
   final String phoneNumberHint;
+  final String amountLabel;
+  final String amountHint;
 }
