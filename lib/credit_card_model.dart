@@ -9,4 +9,21 @@ class CreditCardModel {
   bool isCvvFocused = false;
   String phoneNumber = '';
   String amount = '';
+
+  CreditCardModel copyWith(
+          String cardNumber,
+          String expiryDate,
+          String cardHolderName,
+          String cvvCode,
+          bool isCvvFocused,
+          String phoneNumber,
+          String amount) =>
+      CreditCardModel(
+          cardNumber ?? this.cardNumber,
+          expiryDate ?? this.expiryDate,
+          cardHolderName ?? this.cardHolderName,
+          cvvCode ?? this.cvvCode,
+          isCvvFocused ?? this.isCvvFocused,
+          phoneNumber ?? this.phoneNumber,
+          amount ?? this.amount);
 }
