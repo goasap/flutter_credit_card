@@ -11,13 +11,13 @@ class CreditCardModel {
   String amount = '';
 
   CreditCardModel copyWith(
-          String cardNumber,
+          {String cardNumber,
           String expiryDate,
           String cardHolderName,
           String cvvCode,
           bool isCvvFocused,
           String phoneNumber,
-          String amount) =>
+          String amount}) =>
       CreditCardModel(
           cardNumber ?? this.cardNumber,
           expiryDate ?? this.expiryDate,
