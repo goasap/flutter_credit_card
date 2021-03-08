@@ -15,12 +15,14 @@ class CreditCardForm extends StatefulWidget {
     this.cvvCode,
     this.phoneNumber,
     this.amount,
+    this.email,
     @required this.onCreditCardModelChange,
     this.themeColor,
     this.textColor = Colors.black,
     this.cursorColor,
     this.showHolderName = true,
     this.showPhoneNumber = true,
+    this.showEmail = true,
     this.localizedText = const LocalizedText(),
   })  : assert(localizedText != null),
         super(key: key);
@@ -32,7 +34,9 @@ class CreditCardForm extends StatefulWidget {
   final String phoneNumber;
   final bool showHolderName;
   final bool showPhoneNumber;
+  final bool showEmail;
   final String amount;
+  final String email;
   final void Function(CreditCardModel) onCreditCardModelChange;
   final Color themeColor;
   final Color textColor;
@@ -50,6 +54,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   String cvvCode;
   String phoneNumber;
   String amount;
+  String email;
   bool isCvvFocused = false;
   Color themeColor;
 
@@ -67,6 +72,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final MoneyMaskedTextController _amountController =
       MoneyMaskedTextController(leftSymbol: '\$ ', decimalSeparator: '.');
+  final TextEditingController _emailController = TextEditingController();
 
   FocusNode cvvFocusNode = FocusNode();
 
@@ -82,9 +88,10 @@ class _CreditCardFormState extends State<CreditCardForm> {
     cvvCode = widget.cvvCode ?? '';
     phoneNumber = widget.phoneNumber ?? '';
     amount = widget.amount ?? '';
+    email = widget.email ?? '';
 
     creditCardModel = CreditCardModel(cardNumber, expiryDate, cardHolderName,
-        cvvCode, isCvvFocused, phoneNumber, amount);
+        cvvCode, isCvvFocused, phoneNumber, amount, email);
   }
 
   @override
@@ -133,6 +140,14 @@ class _CreditCardFormState extends State<CreditCardForm> {
       setState(() {
         phoneNumber = _phoneNumberController.text;
         creditCardModel.phoneNumber = phoneNumber;
+        onCreditCardModelChange(creditCardModel);
+      });
+    });
+
+    _emailController.addListener(() {
+      setState(() {
+        amount = _emailController.text;
+        creditCardModel.email = email;
         onCreditCardModelChange(creditCardModel);
       });
     });
@@ -261,6 +276,24 @@ class _CreditCardFormState extends State<CreditCardForm> {
                       textInputAction: TextInputAction.next,
                     ),
                   )
+                : Container(),
+            (widget.showEmail)
+                ? Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    margin: const EdgeInsets.only(left: 16, top: 8, right: 16),
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      cursorColor: widget.cursorColor ?? themeColor,
+                      style: TextStyle(
+                        color: widget.textColor,
+                      ),
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          labelText: widget.localizedText.emailLabel,
+                          hintText: widget.localizedText.emailHint),
+                      textInputAction: TextInputAction.next,
+                    ))
                 : Container(),
             Container(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
