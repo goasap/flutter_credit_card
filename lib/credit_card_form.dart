@@ -146,7 +146,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
 
     _emailController.addListener(() {
       setState(() {
-        amount = _emailController.text;
+        cardEmail = _emailController.text;
         creditCardModel.cardEmail = cardEmail;
         onCreditCardModelChange(creditCardModel);
       });

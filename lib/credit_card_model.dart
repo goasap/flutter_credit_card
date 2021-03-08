@@ -17,7 +17,6 @@ class CreditCardModel {
   String phoneNumber = '';
   String cardEmail = '';
   String amount = '';
-  String cardEmail = '';
 
   CreditCardModel copyWith(
           {String cardNumber,
