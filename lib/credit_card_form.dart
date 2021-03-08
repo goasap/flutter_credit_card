@@ -15,7 +15,7 @@ class CreditCardForm extends StatefulWidget {
     this.cvvCode,
     this.phoneNumber,
     this.amount,
-    this.email,
+    this.cardEmail,
     @required this.onCreditCardModelChange,
     this.themeColor,
     this.textColor = Colors.black,
@@ -36,7 +36,7 @@ class CreditCardForm extends StatefulWidget {
   final bool showPhoneNumber;
   final bool showEmail;
   final String amount;
-  final String email;
+  final String cardEmail;
   final void Function(CreditCardModel) onCreditCardModelChange;
   final Color themeColor;
   final Color textColor;
@@ -54,7 +54,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
   String cvvCode;
   String phoneNumber;
   String amount;
-  String email;
+  String cardEmail;
   bool isCvvFocused = false;
   Color themeColor;
 
@@ -88,10 +88,10 @@ class _CreditCardFormState extends State<CreditCardForm> {
     cvvCode = widget.cvvCode ?? '';
     phoneNumber = widget.phoneNumber ?? '';
     amount = widget.amount ?? '';
-    email = widget.email ?? '';
+    cardEmail = widget.cardEmail ?? '';
 
     creditCardModel = CreditCardModel(cardNumber, expiryDate, cardHolderName,
-        cvvCode, isCvvFocused, phoneNumber, amount, email);
+        cvvCode, isCvvFocused, phoneNumber, amount, cardEmail);
   }
 
   @override
@@ -147,7 +147,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
     _emailController.addListener(() {
       setState(() {
         amount = _emailController.text;
-        creditCardModel.email = email;
+        creditCardModel.cardEmail = cardEmail;
         onCreditCardModelChange(creditCardModel);
       });
     });

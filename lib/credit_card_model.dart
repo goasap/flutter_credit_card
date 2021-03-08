@@ -7,7 +7,7 @@ class CreditCardModel {
       this.isCvvFocused,
       this.phoneNumber,
       this.amount,
-      this.email);
+      this.cardEmail);
 
   String cardNumber = '';
   String expiryDate = '';
@@ -17,7 +17,7 @@ class CreditCardModel {
   String phoneNumber = '';
   String cardEmail = '';
   String amount = '';
-  String email = '';
+  String cardEmail = '';
 
   CreditCardModel copyWith(
           {String cardNumber,
@@ -27,7 +27,7 @@ class CreditCardModel {
           bool isCvvFocused,
           String phoneNumber,
           String amount,
-          String email}) =>
+          String cardEmail}) =>
       CreditCardModel(
           cardNumber ?? this.cardNumber,
           expiryDate ?? this.expiryDate,
@@ -36,5 +36,5 @@ class CreditCardModel {
           isCvvFocused ?? this.isCvvFocused,
           phoneNumber ?? this.phoneNumber,
           amount ?? this.amount,
-          email ?? this.email);
+          cardEmail ?? this.cardEmail);
 }
